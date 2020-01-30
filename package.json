@@ -1,0 +1,25 @@
+{
+  "name": "symdb-rest",
+  "version": "1.0.0",
+  "description": "A rest interface to multiple symdbs",
+  "main": "server.js",
+  "dependencies": {
+    "symdb": "^2.3.3",
+    "usey-http": "^0.10.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wankdanker/symdb-rest.git"
+  },
+  "author": "Dan VerWeire",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wankdanker/symdb-rest/issues"
+  },
+  "homepage": "https://github.com/wankdanker/symdb-rest#readme"
+}
