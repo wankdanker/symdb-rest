@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "description": "A rest interface to multiple symdbs",
   "main": "server.js",
+  "bin": {
+    "symdb-rest" : "./server.js"
+  },
   "dependencies": {
     "symdb": "^2.3.3",
-    "usey-http": "^0.10.0"
+    "usey-http": "^0.10.0",
+    "yargs": "^15.1.0"
   },
   "devDependencies": {},
   "scripts": {

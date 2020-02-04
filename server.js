@@ -1,10 +1,11 @@
 const UseyHttp = require('usey-http');
 const SymDb = require('symdb');
 const path = require('path');
+const argv = require('yargs').argv;
 
 const symdbs = {};
-const root = '/opt/symdb';
-const port = 8787;
+const root = argv.root || process.env.SYMDB_REST_ROOT || '/opt/symdb';
+const port = argv.port || process.env.SYMDB_REST_PORT || 8787;
 
 const app = UseyHttp();
 
