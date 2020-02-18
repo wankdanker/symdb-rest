@@ -3,6 +3,7 @@ const UseyHttp = require('usey-http');
 const SymDb = require('symdb');
 const path = require('path');
 const getValue = require('get-value');
+const generateSchema = require('generate-schema');
 
 module.exports = init;
 
@@ -35,6 +36,7 @@ function init (opts) {
 
     // register route to get stuff
     app.get('/:database/:collection', get);
+    app.get('/:database/:collection/schema', get);
     app.get('/:database/:collection/:query', get);
     app.get('/:database/:collection/:query/field/:fields', get);
 
@@ -69,6 +71,7 @@ function init (opts) {
         const db = resolveSymdb(database);
         const model = resolveModel(collection, db);
 
+        const schema = ~req.url.indexOf('schema');
         const page = req.query._page || 1;
         const limit = req.query._limit || 10;
         const fields = fieldify(req.params.fields || req.query._fields || null);
@@ -98,6 +101,10 @@ function init (opts) {
                 }
 
                 return res.end();
+            }
+
+            if (schema) {
+                return res.json(generateSchema.json(collection, data));
             }
 
             res.json({
