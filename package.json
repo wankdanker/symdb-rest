@@ -2,11 +2,12 @@
   "name": "symdb-rest",
   "version": "1.0.0",
   "description": "A rest interface to multiple symdbs",
-  "main": "server.js",
+  "main": "app.js",
   "bin": {
-    "symdb-rest" : "./server.js"
+    "symdb-rest": "./server.js"
   },
   "dependencies": {
+    "get-value": "^3.0.1",
     "symdb": "^2.3.3",
     "usey-http": "^0.10.0",
     "yargs": "^15.1.0"
