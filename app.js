@@ -22,6 +22,10 @@ function init (opts) {
     // our app
     const app = UseyHttp();
 
+    //attach some local functions to the app for external use
+    app.resolveSymdb = resolveSymdb;
+    app.resolveModel = resolveModel;
+
     // this contains instances of symdbs
     // also available on the instance on the app that we are returning from init
     const symdbs = app.symdbs = {};
