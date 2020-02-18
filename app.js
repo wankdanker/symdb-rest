@@ -4,6 +4,7 @@ const SymDb = require('symdb');
 const path = require('path');
 const getValue = require('get-value');
 const generateSchema = require('generate-schema');
+const generateOpenapi = require('json-schema-to-openapi-schema');
 
 module.exports = init;
 
@@ -37,6 +38,7 @@ function init (opts) {
     // register route to get stuff
     app.get('/:database/:collection', get);
     app.get('/:database/:collection/schema', get);
+    app.get('/:database/:collection/openapi', get);
     app.get('/:database/:collection/:query', get);
     app.get('/:database/:collection/:query/field/:fields', get);
 
@@ -72,6 +74,7 @@ function init (opts) {
         const model = resolveModel(collection, db);
 
         const schema = ~req.url.indexOf('schema');
+        const openapi = ~req.url.indexOf('openapi');
         const page = req.query._page || 1;
         const limit = req.query._limit || 10;
         const fields = fieldify(req.params.fields || req.query._fields || null);
@@ -103,8 +106,15 @@ function init (opts) {
                 return res.end();
             }
 
-            if (schema) {
-                return res.json(generateSchema.json(collection, data));
+            if (schema || openapi) {
+                let jschema = generateSchema.json(collection, data);
+
+                if (!openapi) {
+                    return res.json(jschema);
+                }
+
+                // return generateOpenapi(jschema).then(oschema => res.json(oschema)).catch(next);
+                return res.json(generateOpenapi(jschema))
             }
 
             res.json({
@@ -182,7 +192,11 @@ function init (opts) {
         res.status(500);
 
         res.json({
-            error : e
+            error : {
+                message : e.message || 'An unspecified error occurred.'
+                , code : e.code
+                // , stack : e.stack
+            }
         });
     }
 
