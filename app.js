@@ -192,7 +192,10 @@ function init (opts) {
      * @param {*} res
      */
     function error (e, req, res) {
-        res.status(500);
+        //if e.code is a number, then use it for status, otherwise use 500
+        let code = Number.isFinite(e.code) && e.code || 500;
+
+        res.status(code);
 
         res.json({
             error : {
