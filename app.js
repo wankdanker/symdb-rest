@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 const UseyHttp = require('usey-http');
 const SymDb = require('symdb');
 const path = require('path');

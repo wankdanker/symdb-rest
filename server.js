@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const SymdbRest = require('./app');
 const argv = require('yargs').argv;
 
