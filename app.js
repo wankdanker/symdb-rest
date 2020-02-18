@@ -255,8 +255,8 @@ function init (opts) {
             id : String
         });
 
-        model.on('update:before', SymDb.patcher({ id : 'id' }));
-        model.on('delete:before', SymDb.patcher({ id : 'id' }));
+        model.on('update:before', SymDb.patcher({ id : 'id', _id : '_id' }));
+        model.on('delete:before', SymDb.patcher({ id : 'id', _id : '_id' }));
 
         return model;
     }
