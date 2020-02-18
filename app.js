@@ -3,7 +3,7 @@ const SymDb = require('symdb');
 const path = require('path');
 const getValue = require('get-value');
 const generateSchema = require('generate-schema');
-const generateOpenapi = require('json-schema-to-openapi-schema');
+const generateOpenapi = require('@openapi-contrib/json-schema-to-openapi-schema');
 
 module.exports = init;
 
@@ -108,8 +108,7 @@ function init (opts) {
                     return res.json(jschema);
                 }
 
-                // return generateOpenapi(jschema).then(oschema => res.json(oschema)).catch(next);
-                return res.json(generateOpenapi(jschema))
+                return generateOpenapi(jschema).then(oschema => res.json(oschema)).catch(next);
             }
 
             res.json({
