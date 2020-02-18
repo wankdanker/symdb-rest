@@ -206,7 +206,10 @@ function init (opts) {
     function _404(req, res) {
         res.status(404);
         res.json({
-            error : 'not found'
+            error : {
+                message : 'not found'
+                , code : 404
+            }
         });
     }
 
