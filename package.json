@@ -11,6 +11,7 @@
     "get-value": "^3.0.1",
     "json-schema-to-openapi-schema": "^0.4.0",
     "symdb": "^2.3.3",
+    "tape": "^4.13.0",
     "usey-http": "^0.10.0",
     "yargs": "^15.1.0"
   },
