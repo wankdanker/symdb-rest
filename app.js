@@ -30,14 +30,6 @@ function init (opts) {
     // also available on the instance on the app that we are returning from init
     const symdbs = app.symdbs = {};
 
-    // register the query string parser
-    app.use(UseyHttp.queryParser());
-
-    // register the json body parser
-    app.use(UseyHttp.bodyParser.json({
-        limit : '100mb'
-    }));
-
     // register route to get stuff
     app.get('/:database/:collection', get);
     app.get('/:database/:collection/schema', get);
